@@ -1,5 +1,6 @@
-FROM maven:3.6-jdk-11 AS build
-COPY pom.xml /usr/src/app/pom.xml
-RUN mvn -f /usr/src/app/pom.xml dependency:resolve dependency:resolve-plugins
-COPY src /usr/src/app/src
-CMD mvn -f /usr/src/app/pom.xml clean test
+FROM maven
+COPY . /home/docker-testng-demo
+CMD mvn -f /home/docker-testng-demo/pom.xml clean test
+
+# docker build . -t docker-testng-demo
+# docker run -e BASE_URL=http://google.com docker-testng-demo
